@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "migrate": "node-pg-migrate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import-x": "^4.17.1",
     "globals": "^17.12.0",
+    "node-pg-migrate": "^9.0.0",
     "prettier": "^3.9.8",
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
