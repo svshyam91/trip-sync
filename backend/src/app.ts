@@ -1,12 +1,15 @@
-import express from "express";
+import express from 'express';
+import tripRoutes from './modules/trips/trip.routes.js';
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/health", (_req, res) => {
+app.use(tripRoutes);
+
+app.get('/health', (_req, res) => {
   res.json({
-    status: "ok",
+    status: 'ok',
   });
 });
 
