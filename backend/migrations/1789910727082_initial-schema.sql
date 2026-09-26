@@ -1,12 +1,12 @@
 -- Up Migration
 
 CREATE TABLE users (
-  id UUID PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE locations (
-  id UUID PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name VARCHAR(255) NOT NULL,
   address TEXT,
   latitude NUMERIC(9, 6),
@@ -14,7 +14,7 @@ CREATE TABLE locations (
 );
 
 CREATE TABLE trips (
-  id UUID PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   trip_id VARCHAR(12) NOT NULL UNIQUE,
   name VARCHAR(100) NOT NULL,
   arrive_by TIMESTAMPTZ,
@@ -28,7 +28,7 @@ CREATE TABLE trips (
 );
 
 CREATE TABLE trip_participants (
-  id UUID PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   trip_id UUID NOT NULL REFERENCES trips(id),
   user_id UUID NOT NULL REFERENCES users(id),
   is_owner BOOLEAN NOT NULL DEFAULT FALSE,
@@ -38,7 +38,7 @@ CREATE TABLE trip_participants (
 );
 
 CREATE TABLE stops (
-  id UUID PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   location_id UUID NOT NULL REFERENCES locations(id)
 );
 
