@@ -1,8 +1,10 @@
 import type { RequestHandler } from 'express';
 
-import type { LatLngLiteral } from '#types/location.js';
+import type { LatLngLiteral } from '#types/location.types.js';
 
 import * as placeService from './place.service.js';
+
+
 
 const searchPlace: RequestHandler = async (req, res, next) => {
   try {
