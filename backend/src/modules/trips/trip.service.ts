@@ -1,5 +1,5 @@
 import { TRIP_STATUS } from '../../constants/trip.constants.js';
-import { generateRandomString } from '../../utils/generate-random-string.js';
+import { generateRandomString } from '../../shared/utils/generate-random-string.js';
 
 import * as tripRepository from './trip.repository.js';
 
