@@ -11,18 +11,17 @@ const createTrip = async (
   const tripId = generateRandomString();
   const createdAt = new Date();
 
-    // check if destinationLocationId exist in location table
-    // check if arriveBy date is in future. 
-    
+  // check if destinationLocationId exist in location table
+  // check if arriveBy date is in future.
 
-  return tripRepository.createTrip(
+  return tripRepository.createTrip({
     tripId,
     name,
     arriveBy,
-    TRIP_STATUS.CREATED,
+    status: TRIP_STATUS.CREATED,
     createdAt,
     destinationLocationId,
-  );
+  });
 };
 
 export { createTrip };
