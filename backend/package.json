@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@googlemaps/places": "^3.0.0",
     "dotenv": "^18.0.1",
     "express": "^5.2.1",
     "pg": "^8.23.0"
@@ -35,5 +36,15 @@
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0"
+  },
+  "imports": {
+    "#config/*": "./dist/config/*",
+    "#constants/*": "./dist/constants/*",
+    "#integrations/*": "./dist/integrations/*",
+    "#models/*": "./dist/models/*",
+    "#modules/*": "./dist/modules/*",
+    "#schema/*": "./dist/schema/*",
+    "#utils/*": "./dist/utils/*",
+    "#types/*": "./dist/types/*"
   }
 }
