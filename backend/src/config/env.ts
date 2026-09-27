@@ -25,9 +25,27 @@ function port(name: string, fallback: number): number {
   return parsed;
 }
 
+const nodeEnv = process.env.NODE_ENV ?? 'development';
+const databaseUrl = required('DATABASE_URL');
+
+const host = new URL(databaseUrl).hostname;
+const isLocal = host === 'localhost' || host === '127.0.0.1';
+
+if (nodeEnv !== 'development' && nodeEnv !== 'production') {
+  throw new Error('NODE_ENV must be development or production');
+}
+
+if (nodeEnv === 'development' && !isLocal) {
+  throw new Error('NODE_ENV development requires a local PostgreSQL connection');
+}
+
+if (nodeEnv === 'production' && isLocal) {
+  throw new Error('NODE_ENV production requires a remote PostgreSQL connection');
+}
+
 export const env = {
-  nodeEnv: process.env.NODE_ENV ?? 'development',
+  nodeEnv,
   port: port('PORT', 3000),
-  databaseUrl: required('DATABASE_URL'),
+  databaseUrl,
   googleApiKey: required('GOOGLE_API_KEY'),
 } as const;
