@@ -2,6 +2,8 @@ import { PlacesClient } from '@googlemaps/places';
 
 import { env } from '#config/env.js';
 import type { LatLngLiteral } from '#types/location.js';
+import { mapAutocompleteResponse } from './google-places.mapper.js';
+import type { PlaceSearchResponse } from '#types/place.js';
 
 class GooglePlacesClient {
   private readonly placesClient: PlacesClient;
@@ -15,10 +17,10 @@ class GooglePlacesClient {
   async getAutocompleteSuggestions(
     searchText: string,
     origin: LatLngLiteral,
-  ): Promise<any> {
+  ): Promise<PlaceSearchResponse> {
     //TODO: Make origin optional
 
-    const response = await this.placesClient.autocompletePlaces({
+    const [response] = await this.placesClient.autocompletePlaces({
       input: searchText,
       origin: {
         latitude: origin.lat,
@@ -27,7 +29,7 @@ class GooglePlacesClient {
       regionCode: 'IN',
     });
 
-    return response;
+    return mapAutocompleteResponse(response);
   }
 }
 

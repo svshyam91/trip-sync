@@ -31,7 +31,7 @@ const searchPlace: RequestHandler = async (req, res, next) => {
       lng: longitude,
     };
 
-    const response = placeService.getSearchPlaceSuggestions(q, origin);
+    const response = await placeService.getSearchPlaceSuggestions(q, origin);
 
     return res.status(200).json(response);
   } catch (error) {
