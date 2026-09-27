@@ -49,6 +49,12 @@ export default defineConfig(
         },
       ],
 
+      '@typescript-eslint/no-floating-promises': 'error',
+
+      '@typescript-eslint/no-misused-promises': 'error',
+
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
+
       // Imports
       'import/no-duplicates': 'error',
 
@@ -63,7 +69,18 @@ export default defineConfig(
             'sibling',
             'index',
           ],
+
+          pathGroups: [
+            {
+              pattern: '#*/**',
+              group: 'internal',
+            },
+          ],
+
+          pathGroupsExcludedImportTypes: ['builtin'],
+
           'newlines-between': 'always',
+
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
@@ -71,7 +88,11 @@ export default defineConfig(
         },
       ],
 
+      'import/no-cycle': 'warn',
+
       // General
+      eqeqeq: ['error', 'always'],
+
       'no-console': [
         'warn',
         {
@@ -82,9 +103,9 @@ export default defineConfig(
       'no-debugger': 'error',
 
       // Maintainability
-      complexity: ['warn', { max: 10 }],
+      complexity: ['warn', { max: 15 }],
       'max-depth': ['warn', { max: 4 }],
-      'max-params': ['warn', { max: 4 }],
+      'max-params': ['warn', { max: 5 }],
     },
   },
 

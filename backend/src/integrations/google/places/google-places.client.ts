@@ -1,9 +1,13 @@
 import { PlacesClient } from '@googlemaps/places';
 
 import { env } from '#config/env.js';
-import type { LatLngLiteral } from '#types/location.js';
+import type { LatLngLiteral } from '#types/location.types.js';
+import type { PlaceSearchResponse } from '#types/place.types.js';
+
 import { mapAutocompleteResponse } from './google-places.mapper.js';
-import type { PlaceSearchResponse } from '#types/place.js';
+
+
+
 
 class GooglePlacesClient {
   private readonly placesClient: PlacesClient;

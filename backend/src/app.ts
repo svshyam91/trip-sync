@@ -1,6 +1,7 @@
 import express from 'express';
-import tripRoutes from './modules/trips/trip.routes.js';
+
 import placeRoutes from './modules/places/place.routes.js';
+import tripRoutes from './modules/trips/trip.routes.js';
 
 const app = express();
 
