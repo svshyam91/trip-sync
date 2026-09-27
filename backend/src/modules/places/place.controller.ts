@@ -1,6 +1,8 @@
 import type { RequestHandler } from 'express';
-import * as placeService from './place.service.js';
+
 import type { LatLngLiteral } from '#types/location.js';
+
+import * as placeService from './place.service.js';
 
 const searchPlace: RequestHandler = async (req, res, next) => {
   try {

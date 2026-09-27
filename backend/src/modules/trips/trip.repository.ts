@@ -2,14 +2,23 @@ import db from '../../config/db.js';
 import type { TripStatus } from '../../constants/trip.constants.js';
 import type { Trip } from '../../models/trip.model.js';
 
-const createTrip = async (
-  tripId: string,
-  name: string,
-  arriveBy: Date,
-  status: TripStatus,
-  createdAt: Date,
-  destinationLocationId: string,
-) => {
+interface CreateTripParams {
+  tripId: string;
+  name: string;
+  arriveBy: Date;
+  status: TripStatus;
+  createdAt: Date;
+  destinationLocationId: string;
+}
+
+const createTrip = async ({
+  tripId,
+  name,
+  arriveBy,
+  status,
+  createdAt,
+  destinationLocationId,
+}: CreateTripParams) => {
   const text = `INSERT INTO trips (trip_id, name, arrive_by, status, created_at, destination_location_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
   const values = [
     tripId,

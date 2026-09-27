@@ -1,11 +1,12 @@
+import type { protos } from '@googlemaps/places';
+
 import type { PlaceSearchResponse } from '#types/place.js';
-import { protos } from '@googlemaps/places';
 
 type IAutocompletePlacesResponse =
   protos.google.maps.places.v1.IAutocompletePlacesResponse;
 
 function isDefined<T>(value: T | null | undefined): value is T {
-  return value != null;
+  return value !== null;
 }
 
 export function mapAutocompleteResponse(
