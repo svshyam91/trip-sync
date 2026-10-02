@@ -1,14 +1,94 @@
-:root {
-  font-family: Inter, Roboto, Helvetica, Arial, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* MUI sits below Tailwind utilities, so className="..." can override MUI */
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
+
+/* MUI adds the `.dark` class to <html> (colorSchemeSelector: 'class') */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Bridge: Tailwind utilities read the MUI theme's CSS variables */
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--mui-palette-background-default);
+  --color-card: var(--mui-palette-background-paper);
+  --color-muted: var(--mui-palette-background-muted);
+  --color-foreground: var(--mui-palette-text-primary);
+  --color-muted-foreground: var(--mui-palette-text-secondary);
+  --color-border: var(--mui-palette-divider);
+  --color-accent: var(--mui-palette-action-hover);
+  --color-ring: var(--mui-palette-primary-main);
+
+  --color-primary: var(--mui-palette-primary-main);
+  --color-success: var(--mui-palette-success-main);
+  --color-danger: var(--mui-palette-error-main);
+  --color-warning: var(--mui-palette-warning-main);
+
+  --color-brand-50: var(--mui-palette-brand-50);
+  --color-brand-100: var(--mui-palette-brand-100);
+  --color-brand-200: var(--mui-palette-brand-200);
+  --color-brand-300: var(--mui-palette-brand-300);
+  --color-brand-400: var(--mui-palette-brand-400);
+  --color-brand-500: var(--mui-palette-brand-500);
+  --color-brand-600: var(--mui-palette-brand-600);
+  --color-brand-700: var(--mui-palette-brand-700);
+  --color-brand-800: var(--mui-palette-brand-800);
+  --color-brand-900: var(--mui-palette-brand-900);
+  --color-brand-950: var(--mui-palette-brand-950);
 }
 
-html,
-body,
-#root {
-  min-height: 100%;
-  margin: 0;
+@theme {
+  --shadow-glass: 0 8px 32px 0 rgb(31 38 135 / 0.07);
+  --shadow-glow: 0 0 20px rgb(99 102 241 / 0.25);
+  --animate-pulse-ring: pulse-ring 2s ease-in-out infinite;
+  @keyframes pulse-ring {
+    0%,
+    100% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.3;
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .stop-card {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+    user-select: none;
+  }
+  .stop-card.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+    border-style: dashed;
+    border-color: var(--color-brand-500);
+  }
+  .stop-card.drag-over {
+    border-top: 3px solid var(--color-brand-500);
+    transform: translateY(4px);
+  }
 }
