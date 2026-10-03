@@ -1,12 +1,12 @@
 import {
   AdvancedMarker,
   Pin,
-  useAdvancedMarkerRef
-} from "@vis.gl/react-google-maps";
+  useAdvancedMarkerRef,
+} from '@vis.gl/react-google-maps';
 
-import type { LatLngLike } from "./LocationMap";
-import PersonInfoWindow from "./PersonInfoWindow";
-import { mixColor } from "../../utils/colorVariants";
+import type { LatLngLike } from './LocationMap';
+import PersonInfoWindow from './PersonInfoWindow';
+import { mixColor } from '../../utils/colorVariants';
 
 export type PersonMarker = {
   id: string;
@@ -34,9 +34,9 @@ const PersonMarker = ({
   onClick,
   onHoverStart,
   onHoverEnd,
-  onInfoWindowClose
+  onInfoWindowClose,
 }: PersonMarkerProps) => {
-  const color = person.color ?? "#0f9d58";
+  const color = person.color ?? '#0f9d58';
   const background = color;
   const borderColor = mixColor(color, -32);
   const glyphColor = mixColor(color, 80);

@@ -1,6 +1,6 @@
 export default function formatLastUpdated(value?: string) {
   if (!value) {
-    return "Just now";
+    return 'Just now';
   }
 
   const date = new Date(value);
@@ -9,10 +9,10 @@ export default function formatLastUpdated(value?: string) {
     return value;
   }
 
-  return new Intl.DateTimeFormat("en", {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit"
+  return new Intl.DateTimeFormat('en', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
   }).format(date);
 }

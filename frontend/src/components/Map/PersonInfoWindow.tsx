@@ -1,22 +1,22 @@
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { InfoWindow } from "@vis.gl/react-google-maps";
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { InfoWindow } from '@vis.gl/react-google-maps';
 
-import type { PersonMarker } from "./PersonMarker";
-import formatLastUpdated from "../../utils/formatLastUpdated";
+import type { PersonMarker } from './PersonMarker';
+import formatLastUpdated from '../../utils/formatLastUpdated';
 
 type PersonInfoWindowProps = {
   person: PersonMarker;
   onClose: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   anchor: any;
-  variant?: "active" | "hover";
+  variant?: 'active' | 'hover';
 };
 
 export default function PersonInfoWindow({
   person,
   onClose,
-  anchor
+  anchor,
 }: PersonInfoWindowProps) {
   return (
     <InfoWindow
@@ -31,7 +31,7 @@ export default function PersonInfoWindow({
           size={12}
           container
           sx={{
-            alignItems: "center"
+            alignItems: 'center',
           }}
           spacing={1}
         >
@@ -43,8 +43,8 @@ export default function PersonInfoWindow({
                 style={{
                   width: 28,
                   height: 28,
-                  borderRadius: "50%",
-                  objectFit: "cover"
+                  borderRadius: '50%',
+                  objectFit: 'cover',
                 }}
               />
             ) : (
@@ -52,13 +52,13 @@ export default function PersonInfoWindow({
                 sx={{
                   width: 28,
                   height: 28,
-                  borderRadius: "50%",
-                  display: "grid",
-                  placeItems: "center",
-                  bgcolor: person.color ?? "primary.main",
-                  color: "common.white",
+                  borderRadius: '50%',
+                  display: 'grid',
+                  placeItems: 'center',
+                  bgcolor: person.color ?? 'primary.main',
+                  color: 'common.white',
                   fontWeight: 700,
-                  fontSize: 12
+                  fontSize: 12,
                 }}
               >
                 {person.name.charAt(0).toUpperCase()}
