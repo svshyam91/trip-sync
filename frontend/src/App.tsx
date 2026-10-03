@@ -1,6 +1,7 @@
 import { APIProvider } from '@vis.gl/react-google-maps';
 
 import Header from './components/layout/header/Header';
+import HomePage from './pages/HomePage';
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -8,6 +9,7 @@ function App() {
   return (
     <APIProvider apiKey={apiKey}>
       <Header />
+      <HomePage />
       {/* <Grid
           container
           component="main"

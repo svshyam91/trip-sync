@@ -17,6 +17,7 @@
   --color-border: var(--mui-palette-divider);
   --color-accent: var(--mui-palette-action-hover);
   --color-ring: var(--mui-palette-primary-main);
+  --color-primary-foreground: var(--mui-palette-primary-contrastText);
 
   --color-primary: var(--mui-palette-primary-main);
   --color-success: var(--mui-palette-success-main);

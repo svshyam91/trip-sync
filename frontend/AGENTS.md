@@ -6,19 +6,20 @@ Commands (from `frontend/`): `npm run dev` · `npm run lint` · `npm run build`
 
 ## Always follow
 
-1. **Styling order:** MUI component props → theme override (if repeated) → Tailwind `className` → `sx` only for MUI internals or runtime theme values.
-2. **Mobile first.** Unprefixed Tailwind classes are mobile; enhance with `sm: md: lg:`. Check at 375px.
-3. **No hardcoded colors.** Use semantic tokens (`bg-card`, `text-foreground`, `text-muted-foreground`, `border-border`, `brand-*`). Never Tailwind's default palette.
-4. **Icons:** `<Icon name="..." />` only. No `@mui/icons-material`.
-5. **Imports:** MUI path imports (`@mui/material/Button`), `@/` alias, type-only imports with `import { type X }`.
-6. **Dependency direction:** `app → pages → features → components → lib`. Never import upward. Domain-aware code goes in `features/<name>/`, not `components/`.
-7. **No** `any`, non-null `!`, `console.log`, plain CSS files, or inline `style` for static values.
-8. **Before finishing:** `npm run lint` and `npx tsc -b` must pass. Works in light and dark mode.
+1. **Styling order:** MUI component props (including `Stack`/`Grid` for layout) → theme override (if repeated) → Tailwind `className` → `sx` only for MUI internals or runtime theme values.
+2. **Layout:** `Stack` for 1-D rows/columns, `Grid` for 2-D grids. Tailwind only for what MUI has no prop for: positioning, overflow, gradients, blur, radius, shadows, one-off sizing, responsive visibility.
+3. **Mobile first.** Unprefixed Tailwind classes are mobile; enhance with `sm: md: lg:`. Check at 375px.
+4. **No hardcoded colors.** Use semantic tokens (`bg-card`, `text-foreground`, `text-muted-foreground`, `border-border`, `brand-*`). Never Tailwind's default palette.
+5. **Icons:** `<Icon name="..." />` only. No `@mui/icons-material`.
+6. **Imports:** MUI path imports (`@mui/material/Button`), `@/` alias, type-only imports with `import { type X }`.
+7. **Dependency direction:** `app → pages → features → components → lib`. Never import upward. Domain-aware code goes in `features/<name>/`, not `components/`.
+8. **No** `any`, non-null `!`, `console.log`, plain CSS files, or inline `style` for static values.
+9. **Before finishing:** `npm run lint` and `npx tsc -b` must pass. Works in light and dark mode.
 
 ## MCP servers (configured in root `.mcp.json`)
 
-| Server | Use for | Notes |
-| --- | --- | --- |
+| Server    | Use for                                     | Notes                                                                  |
+| --------- | ------------------------------------------- | ---------------------------------------------------------------------- |
 | `mui-mcp` | `fetchDocs` for MUI v9 API/docs when unsure | Don't use `generateReactCode`; it ignores our theme and Tailwind rules |
 
 ## Read the matching doc before starting

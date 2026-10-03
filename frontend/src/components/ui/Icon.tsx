@@ -1,6 +1,7 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faRoute,
+  faCompass,
   faPlus,
   faSun,
   faMoon,
@@ -14,6 +15,7 @@ import {
 
 const icons = {
   route: faRoute,
+  compass: faCompass,
   plus: faPlus,
   sun: faSun,
   moon: faMoon,

@@ -6,14 +6,14 @@ Read this when writing or changing any component's look. Token and theme details
 
 Go to the next step only when the previous one cannot do the job.
 
-1. **MUI component props.** `variant`, `color`, `size`, `fullWidth`, `disabled`, `startIcon`, etc.
+1. **MUI component props.** `variant`, `color`, `size`, `fullWidth`, `disabled`, `startIcon`, etc. Layout components count too: `Stack` (`direction`, `spacing`) for rows and columns, `Grid` (`size`, `columns`) for 2-D grids. Use `color="inherit"` on `Typography` instead of a text-color class when the color comes from the parent.
    ```tsx
    <Button variant="contained" color="primary" size="small" startIcon={<Icon name="plus" />}>
    ```
 2. **Theme for anything repeated.** If the same styling is needed in 2+ places, add it to `src/theme/theme.ts` (`components.MuiX.styleOverrides` or `variants`) instead of copying classes. Example: `variant="subtle"` on `Button` already exists.
-3. **Tailwind `className` for layout and one-off styling.** Flex/grid, gap, margin, padding, sizing, responsive visibility, borders, shadows, rounded corners, text utilities.
+3. **Tailwind `className` for what MUI props do not cover.** Positioning (`relative`, `absolute`), `overflow`, gradients, blur, borders, shadows, rounded corners, margin, padding, sizing, responsive visibility, alignment (`items-center`), text utilities. Reach for raw `flex`/`grid` only when `Stack`/`Grid` cannot express it.
    ```tsx
-   <Card className="flex flex-col gap-3 p-4 md:flex-row">
+   <Stack spacing={3} className="relative overflow-hidden rounded-3xl p-4">
    ```
 4. **`sx` only when Tailwind cannot reach.** That means targeting MUI internal slots (`'& .MuiButton-startIcon'`) or using `theme.vars.*` values computed at runtime. Do not use `sx` for plain layout or spacing.
 
@@ -31,7 +31,7 @@ Go to the next step only when the previous one cannot do the job.
 - Write the base style for the smallest screen, then add larger breakpoints.
 - Tailwind: unprefixed classes are mobile. Enhance with `sm:`, `md:`, `lg:`, `xl:`. Never use `max-*:` to patch desktop designs down to mobile.
   ```tsx
-  className="flex flex-col gap-3 md:flex-row md:gap-6"   // correct
+  className = 'flex flex-col gap-3 md:flex-row md:gap-6'; // correct
   ```
 - MUI `sx` / props: object form with `xs` first. `sx={{ p: { xs: 3, md: 6 } }}`.
 - Breakpoints are identical in MUI and Tailwind: `sm 640 · md 768 · lg 1024 · xl 1280`.
