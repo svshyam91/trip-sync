@@ -2,12 +2,13 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { InfoWindow } from "@vis.gl/react-google-maps";
 
-import formatLastUpdated from "../../utils/formatLastUpdated";
 import type { PersonMarker } from "./PersonMarker";
+import formatLastUpdated from "../../utils/formatLastUpdated";
 
 type PersonInfoWindowProps = {
   person: PersonMarker;
   onClose: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   anchor: any;
   variant?: "active" | "hover";
 };

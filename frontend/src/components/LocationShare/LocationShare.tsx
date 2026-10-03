@@ -1,4 +1,5 @@
 import { Grid, Paper, SvgIcon } from "@mui/material";
+
 import LocationMap, { type PersonMarker } from "../Map/LocationMap";
 
 const samplePeople: PersonMarker[] = [
@@ -30,34 +31,34 @@ export function LocationPinIcon() {
   );
 }
 
-const geoLocationOptions: PositionOptions = {
-  enableHighAccuracy: true,
-  timeout: 10000,
-  maximumAge: 0
-};
+// const geoLocationOptions: PositionOptions = {
+//   enableHighAccuracy: true,
+//   timeout: 10000,
+//   maximumAge: 0
+// };
 
 export default function LocationShare() {
-  const getCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser.");
-      return;
-    }
+  // const getCurrentLocation = () => {
+  //   if (!navigator.geolocation) {
+  //     alert("Geolocation is not supported by your browser.");
+  //     return;
+  //   }
 
-    const handleSuccess = (position: GeolocationPosition) => {
-      console.log("Latitude:", position.coords.latitude);
-      console.log("Longitude:", position.coords.longitude);
-    };
+  //   const handleSuccess = (position: GeolocationPosition) => {
+  //     console.log("Latitude:", position.coords.latitude);
+  //     console.log("Longitude:", position.coords.longitude);
+  //   };
 
-    const handleError = (error: GeolocationPositionError) => {
-      console.error("Error getting location:", error);
-    };
+  //   const handleError = (error: GeolocationPositionError) => {
+  //     console.error("Error getting location:", error);
+  //   };
 
-    navigator.geolocation.getCurrentPosition(
-      handleSuccess,
-      handleError,
-      geoLocationOptions
-    );
-  };
+  //   navigator.geolocation.getCurrentPosition(
+  //     handleSuccess,
+  //     handleError,
+  //     geoLocationOptions
+  //   );
+  // };
 
   return (
     <Paper

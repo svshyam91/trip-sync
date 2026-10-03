@@ -1,6 +1,7 @@
-import { Map, Polyline } from "@vis.gl/react-google-maps";
 import Grid from "@mui/material/Grid";
+import { Map } from "@vis.gl/react-google-maps";
 import { useMemo, useState } from "react";
+
 import PeopleMarker, { type PersonMarker } from "./PersonMarker";
 
 export type { PersonMarker } from "./PersonMarker";

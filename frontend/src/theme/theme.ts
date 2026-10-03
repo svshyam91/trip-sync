@@ -192,18 +192,18 @@ theme = createTheme(theme, {
       lineHeight: 1.5,
       [theme.breakpoints.up('md')]: { fontSize: '1.0625rem' },
     },
-  },
-  overline: {
-    fontSize: fontSize.xs,
-    fontWeight: fontWeight.semibold,
-    letterSpacing: '0.05em',
-    lineHeight: 1.33,
-  },
-  subtitle1: {
-    fontSize: fontSize.base,
-    fontWeight: fontWeight.extrabold,
-    letterSpacing: '-0.025em',
-    lineHeight: 1.25,
+    overline: {
+      fontSize: fontSize.xs,
+      fontWeight: fontWeight.semibold,
+      letterSpacing: '0.05em',
+      lineHeight: 1.33,
+    },
+    subtitle1: {
+      fontSize: fontSize.base,
+      fontWeight: fontWeight.extrabold,
+      letterSpacing: '-0.025em',
+      lineHeight: 1.25,
+    },
   },
 });
 
