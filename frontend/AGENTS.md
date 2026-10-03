@@ -15,6 +15,12 @@ Commands (from `frontend/`): `npm run dev` · `npm run lint` · `npm run build`
 7. **No** `any`, non-null `!`, `console.log`, plain CSS files, or inline `style` for static values.
 8. **Before finishing:** `npm run lint` and `npx tsc -b` must pass. Works in light and dark mode.
 
+## MCP servers (configured in root `.mcp.json`)
+
+| Server | Use for | Notes |
+| --- | --- | --- |
+| `mui-mcp` | `fetchDocs` for MUI v9 API/docs when unsure | Don't use `generateReactCode`; it ignores our theme and Tailwind rules |
+
 ## Read the matching doc before starting
 
 | When you are…                                                                                 | Read                                       |
