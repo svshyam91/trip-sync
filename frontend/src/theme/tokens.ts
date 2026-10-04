@@ -34,8 +34,9 @@ export const emerald = {
 export const rose = { 400: '#fb7185', 600: '#e11d48', 700: '#be123c' } as const;
 export const amber = { 500: '#f59e0b', 600: '#d97706' } as const;
 
-/** Same rem values as Tailwind's default text-xs ... text-2xl */
+/** Same rem values as Tailwind's default text-xs ... text-2xl, plus 2xs for tiny labels */
 export const fontSize = {
+  '2xs': '0.625rem',
   xs: '0.75rem',
   sm: '0.875rem',
   base: '1rem',

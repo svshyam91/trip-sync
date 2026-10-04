@@ -24,6 +24,13 @@ import {
   faMoon,
   faRightToBracket,
   faLocationCrosshairs,
+  faCrown,
+  faUserGroup,
+  faEye,
+  faPenToSquare,
+  faCalendarCheck,
+  faAngleRight,
+  faSuitcaseRolling,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   FontAwesomeIcon,
@@ -55,6 +62,13 @@ const icons = {
   moon: faMoon,
   rightToBracket: faRightToBracket,
   locationCrosshairs: faLocationCrosshairs,
+  crown: faCrown,
+  userGroup: faUserGroup,
+  eye: faEye,
+  penToSquare: faPenToSquare,
+  calendarCheck: faCalendarCheck,
+  angleRight: faAngleRight,
+  suitcaseRolling: faSuitcaseRolling,
   // ...rest
 } as const satisfies Record<string, IconDefinition>;
 

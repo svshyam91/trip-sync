@@ -113,6 +113,10 @@ let theme = createTheme({
           transition: 'transform 150ms, background-color 150ms',
           '&:active': { transform: 'scale(0.95)' },
         }),
+        endIcon: {
+          margin: 0, // spacing comes from `gap` on root
+          '& > *:nth-of-type(1)': { fontSize: fontSize.xs },
+        },
         startIcon: ({ theme }) => ({
           margin: 0, // spacing comes from `gap` on root
           '& > *:nth-of-type(1)': { fontSize: fontSize.xs }, // beats MUI's 20px default
@@ -142,6 +146,12 @@ let theme = createTheme({
           }),
         },
       ],
+    },
+
+    MuiChip: {
+      styleOverrides: {
+        icon: { fontSize: fontSize.xs },
+      },
     },
 
     MuiIconButton: {
