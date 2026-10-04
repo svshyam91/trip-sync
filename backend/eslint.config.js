@@ -106,8 +106,38 @@ export default defineConfig(
       complexity: ['warn', { max: 15 }],
       'max-depth': ['warn', { max: 4 }],
       'max-params': ['warn', { max: 5 }],
+
+      // Readability
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        {
+          blankLine: 'any',
+          prev: ['const', 'let', 'var'],
+          next: ['const', 'let', 'var'],
+        },
+        {
+          blankLine: 'always',
+          prev: '*',
+          next: ['if', 'for', 'while', 'switch', 'try'],
+        },
+        {
+          blankLine: 'always',
+          prev: ['if', 'for', 'while', 'switch', 'try'],
+          next: '*',
+        },
+      ],
     },
   },
 
   prettier,
+
+  // Must come after `prettier`, which turns `curly` off
+  {
+    files: ['**/*.ts'],
+    rules: {
+      curly: ['error', 'all'],
+    },
+  },
 );
