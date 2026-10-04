@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier --check",
+    "format": "prettier --write",
     "preview": "vite preview"
   },
   "dependencies": {
