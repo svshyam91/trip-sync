@@ -32,7 +32,7 @@ let theme = createTheme({
         error: { main: rose[600] },
         warning: { main: amber[600] },
         grey: slate,
-        background: { default: slate[100], paper: '#fff', muted: slate[100] },
+        background: { default: '#fff', paper: slate[50], muted: slate[100] },
         text: {
           primary: slate[900],
           secondary: slate[600],
@@ -58,12 +58,12 @@ let theme = createTheme({
         warning: { main: amber[500] },
         grey: slate,
         background: {
-          default: slate[950],
-          paper: slate[900],
+          default: slate[900],
+          paper: slate[800],
           muted: slate[800],
         },
         text: { primary: '#fff', secondary: slate[300], disabled: slate[500] },
-        divider: slate[800],
+        divider: slate[700],
         action: { hover: slate[700] },
       },
     },
@@ -162,7 +162,7 @@ let theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           backgroundImage: 'none',
-          backgroundColor: `color-mix(in srgb, ${theme.vars.palette.background.paper} 85%, transparent)`,
+          backgroundColor: `color-mix(in srgb, ${theme.vars.palette.background.default} 85%, transparent)`,
           color: theme.vars.palette.text.primary,
           backdropFilter: 'blur(12px)',
           borderBottom: `1px solid ${theme.vars.palette.divider}`,
