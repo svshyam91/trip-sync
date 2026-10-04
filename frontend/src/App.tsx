@@ -12,18 +12,20 @@ function App() {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <Header
-        onHome={() => setPage('home')}
-        onCreateTrip={() => setPage('create')}
-      />
-      {page === 'home' ? (
-        <HomePage onPlanTrip={() => setPage('create')} />
-      ) : (
-        <CreateTripPage
-          onBack={() => setPage('home')}
-          onSubmit={() => setPage('home')}
+      <div className="flex h-dvh flex-col">
+        <Header
+          onHome={() => setPage('home')}
+          onCreateTrip={() => setPage('create')}
         />
-      )}
+        {page === 'home' ? (
+          <HomePage onPlanTrip={() => setPage('create')} />
+        ) : (
+          <CreateTripPage
+            onBack={() => setPage('home')}
+            onSubmit={() => setPage('home')}
+          />
+        )}
+      </div>
       {/* <Grid
           container
           component="main"

@@ -6,7 +6,7 @@ interface CreateTripPageProps {
 }
 
 const CreateTripPage = ({ onBack, onSubmit }: CreateTripPageProps) => (
-  <main className="mx-auto w-full max-w-4xl px-3 py-4 sm:px-4 sm:py-6">
+  <main className="mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col px-3 pt-4 sm:px-4 sm:pt-6">
     <CreateTripForm onBack={onBack} onSubmit={onSubmit} />
   </main>
 );

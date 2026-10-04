@@ -11,6 +11,7 @@ import PresetChips from '@/components/ui/PresetChips';
 
 import { getArrivalPresets } from '../arrivalPresets';
 import { type CreateTripValues } from '../types';
+import DestinationField from './DestinationField';
 
 interface CreateTripFormProps {
   onBack: () => void;
@@ -22,7 +23,7 @@ type Errors = Partial<Record<keyof CreateTripValues, string>>;
 const emptyValues: CreateTripValues = {
   tripName: '',
   arriveBy: '',
-  destination: '',
+  destination: null,
 };
 
 const validate = ({ tripName, arriveBy, destination }: CreateTripValues) => {
@@ -38,8 +39,8 @@ const validate = ({ tripName, arriveBy, destination }: CreateTripValues) => {
     errors.arriveBy = 'Arrival must be in the future';
   }
 
-  if (!destination.trim()) {
-    errors.destination = 'Enter a final destination';
+  if (!destination) {
+    errors.destination = 'Select a final destination';
   }
 
   return errors;
@@ -56,8 +57,12 @@ const iconAdornment = (name: IconName) => ({
 const CreateTripForm = ({ onBack, onSubmit }: CreateTripFormProps) => {
   const [values, setValues] = useState(emptyValues);
   const [errors, setErrors] = useState<Errors>({});
+  const [resetCount, setResetCount] = useState(0);
 
-  const setField = (field: keyof CreateTripValues, value: string) => {
+  const setField = <K extends keyof CreateTripValues>(
+    field: K,
+    value: CreateTripValues[K],
+  ) => {
     setValues((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
@@ -65,6 +70,7 @@ const CreateTripForm = ({ onBack, onSubmit }: CreateTripFormProps) => {
   const reset = () => {
     setValues(emptyValues);
     setErrors({});
+    setResetCount((n) => n + 1);
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -79,89 +85,97 @@ const CreateTripForm = ({ onBack, onSubmit }: CreateTripFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <Stack spacing={6}>
-        <Stack
-          direction="row"
-          className="items-end justify-between border-b border-border pb-3"
-        >
-          <Stack spacing={1} className="items-start">
-            <Button
-              variant="text"
-              size="small"
-              startIcon={<Icon name="arrowLeft" />}
-              onClick={onBack}
-              className="-ml-2 text-primary"
-            >
-              Home
-            </Button>
-            <Typography variant="h1" component="h1">
-              Plan New Journey
-            </Typography>
-          </Stack>
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="flex min-h-0 flex-1 flex-col"
+    >
+      <Stack
+        direction="row"
+        className="shrink-0 items-end justify-between border-b border-border pb-3"
+      >
+        <Stack spacing={1} className="items-start">
           <Button
-            variant="subtle"
-            startIcon={<Icon name="rotateRight" />}
-            onClick={reset}
-            className="border border-border bg-card"
+            variant="text"
+            size="small"
+            startIcon={<Icon name="arrowLeft" />}
+            onClick={onBack}
+            className="-ml-2 text-primary"
           >
-            Reset
+            Home
           </Button>
+          <Typography variant="h1" component="h1">
+            Plan New Journey
+          </Typography>
         </Stack>
+        <Button
+          variant="subtle"
+          startIcon={<Icon name="rotateRight" />}
+          onClick={reset}
+          className="border border-border bg-card"
+        >
+          Reset
+        </Button>
+      </Stack>
 
-        <Stack spacing={2}>
-          <FormField label="1. Trip Name" htmlFor="trip-name" required>
-            <TextField
-              id="trip-name"
-              placeholder="e.g., Summer Coast Road Trip"
-              value={values.tripName}
-              onChange={(e) => setField('tripName', e.target.value)}
-              error={!!errors.tripName}
-              helperText={errors.tripName}
-              slotProps={{ input: iconAdornment('penNib') }}
-              fullWidth
+      <div className="-mx-1 min-h-0 flex-1 overflow-y-auto px-1 py-6">
+        <Stack spacing={6}>
+          <Stack spacing={2}>
+            <FormField label="1. Trip Name" htmlFor="trip-name" required>
+              <TextField
+                id="trip-name"
+                placeholder="e.g., Summer Coast Road Trip"
+                value={values.tripName}
+                onChange={(e) => setField('tripName', e.target.value)}
+                error={!!errors.tripName}
+                helperText={errors.tripName}
+                slotProps={{ input: iconAdornment('penNib') }}
+                fullWidth
+              />
+            </FormField>
+          </Stack>
+
+          <Stack spacing={2}>
+            <FormField
+              label="2. Target Arrival Date & Time"
+              htmlFor="arrive-by"
+              required
+            >
+              <TextField
+                id="arrive-by"
+                type="datetime-local"
+                value={values.arriveBy}
+                onChange={(e) => setField('arriveBy', e.target.value)}
+                error={!!errors.arriveBy}
+                helperText={errors.arriveBy}
+                slotProps={{ input: iconAdornment('clock') }}
+                fullWidth
+              />
+            </FormField>
+            <PresetChips
+              title="Fast Presets:"
+              options={getArrivalPresets()}
+              onSelect={(v) => setField('arriveBy', v)}
             />
-          </FormField>
-        </Stack>
+          </Stack>
 
-        <Stack spacing={2}>
           <FormField
-            label="2. Target Arrival Date & Time"
-            htmlFor="arrive-by"
+            label="3. Final Destination"
+            htmlFor="destination"
             required
           >
-            <TextField
-              id="arrive-by"
-              type="datetime-local"
-              value={values.arriveBy}
-              onChange={(e) => setField('arriveBy', e.target.value)}
-              error={!!errors.arriveBy}
-              helperText={errors.arriveBy}
-              slotProps={{ input: iconAdornment('clock') }}
-              fullWidth
+            <DestinationField
+              key={resetCount}
+              id="destination"
+              value={values.destination}
+              onChange={(v) => setField('destination', v)}
+              error={errors.destination}
             />
           </FormField>
-          <PresetChips
-            title="Fast Presets:"
-            options={getArrivalPresets()}
-            onSelect={(v) => setField('arriveBy', v)}
-          />
         </Stack>
+      </div>
 
-        <FormField label="3. Final Destination" htmlFor="destination" required>
-          <TextField
-            id="destination"
-            placeholder="Search city, airport, landmark..."
-            value={values.destination}
-            onChange={(e) => setField('destination', e.target.value)}
-            error={!!errors.destination}
-            helperText={errors.destination}
-            slotProps={{ input: iconAdornment('locationDot') }}
-            autoComplete="off"
-            fullWidth
-          />
-        </FormField>
-
+      <div className="shrink-0 border-t border-border py-4">
         <Button
           type="submit"
           variant="contained"
@@ -171,7 +185,7 @@ const CreateTripForm = ({ onBack, onSubmit }: CreateTripFormProps) => {
         >
           Save & Create Trip
         </Button>
-      </Stack>
+      </div>
     </form>
   );
 };
