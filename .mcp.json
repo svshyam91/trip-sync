@@ -3,6 +3,10 @@
     "mui-mcp": {
       "command": "npx",
       "args": ["-y", "@mui/mcp@latest"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
     }
   }
 }
