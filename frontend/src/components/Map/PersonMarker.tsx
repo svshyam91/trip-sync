@@ -50,8 +50,8 @@ const PersonMarker = ({
         position={person.position}
         title={person.name}
         onClick={onClick}
-        onMouseOver={onHoverStart}
-        onMouseOut={onHoverEnd}
+        onMouseEnter={onHoverStart}
+        onMouseLeave={onHoverEnd}
       >
         <Pin
           background={background}

@@ -170,6 +170,31 @@ let theme = createTheme({
       },
     },
 
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: theme.vars.palette.background.paper,
+          borderRadius: theme.spacing(4),
+          fontSize: fontSize.sm,
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.vars.palette.brand[300],
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.vars.palette.primary.main,
+            borderWidth: 1,
+          },
+          '&.Mui-focused': {
+            boxShadow: `0 0 0 3px color-mix(in srgb, ${theme.vars.palette.primary.main} 25%, transparent)`,
+          },
+        }),
+        input: ({ theme }) => ({ padding: theme.spacing(3, 3.5) }),
+        notchedOutline: ({ theme }) => ({
+          borderColor: theme.vars.palette.divider,
+          transition: 'border-color 150ms',
+        }),
+      },
+    },
+
     MuiDialog: {
       styleOverrides: {
         paper: ({ theme }) => ({ borderRadius: theme.spacing(6) }),

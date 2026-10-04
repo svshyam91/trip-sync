@@ -1,15 +1,29 @@
 import { APIProvider } from '@vis.gl/react-google-maps';
+import { useState } from 'react';
 
 import Header from './components/layout/header/Header';
+import CreateTripPage from './pages/CreateTripPage';
 import HomePage from './pages/HomePage';
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 function App() {
+  const [page, setPage] = useState<'home' | 'create'>('home');
+
   return (
     <APIProvider apiKey={apiKey}>
-      <Header />
-      <HomePage />
+      <Header
+        onHome={() => setPage('home')}
+        onCreateTrip={() => setPage('create')}
+      />
+      {page === 'home' ? (
+        <HomePage onPlanTrip={() => setPage('create')} />
+      ) : (
+        <CreateTripPage
+          onBack={() => setPage('home')}
+          onSubmit={() => setPage('home')}
+        />
+      )}
       {/* <Grid
           container
           component="main"
