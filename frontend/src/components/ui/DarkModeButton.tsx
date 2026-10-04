@@ -5,7 +5,8 @@ import { Icon } from '@/components/ui/Icon';
 
 const DarkModeButton = () => {
   const { mode, systemMode, setMode } = useColorScheme();
-  if (!mode) return null; // undefined until MUI has read the saved preference
+
+  if (!mode) {return null;} // undefined until MUI has read the saved preference
 
   const isDark = (mode === 'system' ? systemMode : mode) === 'dark';
 

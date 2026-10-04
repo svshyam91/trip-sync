@@ -8,8 +8,7 @@ import formatLastUpdated from '../../utils/formatLastUpdated';
 type PersonInfoWindowProps = {
   person: PersonMarker;
   onClose: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  anchor: any;
+  anchor: google.maps.marker.AdvancedMarkerElement | null;
   variant?: 'active' | 'hover';
 };
 

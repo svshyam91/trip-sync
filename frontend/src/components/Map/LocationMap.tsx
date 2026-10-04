@@ -45,6 +45,7 @@ export default function LocationMap({
       (acc, person) => {
         acc.lat += person.position.lat;
         acc.lng += person.position.lng;
+
         return acc;
       },
       { lat: 0, lng: 0 },
