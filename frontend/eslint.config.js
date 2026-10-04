@@ -16,7 +16,7 @@ export default defineConfig([
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended, // includes no-explicit-any, no-unused-vars
+      tseslint.configs.recommendedTypeChecked,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
       reactHooks.configs.flat.recommended,
@@ -29,6 +29,9 @@ export default defineConfig([
     },
     languageOptions: {
       globals: globals.browser,
+      parserOptions: {
+        projectService: true,
+      },
     },
     settings: {
       react: { version: 'detect' },
@@ -38,7 +41,6 @@ export default defineConfig([
       'import-x/resolver-next': [createTypeScriptImportResolver()],
     },
     rules: {
-      semi: ['error', 'always'],
       'react/prop-types': 'off',
 
       // Tailwind
@@ -46,7 +48,6 @@ export default defineConfig([
       'better-tailwindcss/no-unknown-classes': 'warn',
 
       // TypeScript
-      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -59,7 +60,8 @@ export default defineConfig([
         'error',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
-      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
 
       // Imports
       'import-x/order': [
@@ -75,15 +77,13 @@ export default defineConfig([
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
-      'import-x/no-cycle': ['error', { maxDepth: 10 }],
+      'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
       'import-x/no-self-import': 'error',
 
       // Correctness
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'no-var': 'error',
-      'prefer-const': 'error',
 
       // Maintainability
       complexity: ['warn', 15],

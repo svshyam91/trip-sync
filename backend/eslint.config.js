@@ -1,19 +1,19 @@
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import importPlugin from 'eslint-plugin-import-x';
+import { importX } from 'eslint-plugin-import-x';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
 
 export default defineConfig(
   {
-    ignores: ['dist/', 'coverage/', 'node_modules/'],
+    ignores: ['dist/', 'coverage/'],
   },
 
   {
     files: ['**/*.ts'],
 
-    extends: [js.configs.recommended, tseslint.configs.recommended],
+    extends: [js.configs.recommended, tseslint.configs.strictTypeChecked],
 
     languageOptions: {
       globals: {
@@ -25,13 +25,11 @@ export default defineConfig(
     },
 
     plugins: {
-      import: importPlugin,
+      'import-x': importX,
     },
 
     rules: {
       // TypeScript
-      '@typescript-eslint/no-explicit-any': 'error',
-
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -45,20 +43,16 @@ export default defineConfig(
         'error',
         {
           prefer: 'type-imports',
-          fixStyle: 'separate-type-imports',
+          fixStyle: 'inline-type-imports',
         },
       ],
 
-      '@typescript-eslint/no-floating-promises': 'error',
-
-      '@typescript-eslint/no-misused-promises': 'error',
-
-      '@typescript-eslint/no-unnecessary-condition': 'warn',
-
       // Imports
-      'import/no-duplicates': 'error',
+      'import-x/no-duplicates': 'error',
 
-      'import/order': [
+      'import-x/no-self-import': 'error',
+
+      'import-x/order': [
         'error',
         {
           groups: [
@@ -88,10 +82,10 @@ export default defineConfig(
         },
       ],
 
-      'import/no-cycle': 'warn',
+      'import-x/no-cycle': 'error',
 
       // General
-      eqeqeq: ['error', 'always'],
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
 
       'no-console': [
         'warn',
@@ -100,12 +94,11 @@ export default defineConfig(
         },
       ],
 
-      'no-debugger': 'error',
-
       // Maintainability
       complexity: ['warn', { max: 15 }],
       'max-depth': ['warn', { max: 4 }],
-      'max-params': ['warn', { max: 5 }],
+      'max-params': ['warn', { max: 4 }],
+      'no-nested-ternary': 'warn',
 
       // Readability
       'padding-line-between-statements': [
