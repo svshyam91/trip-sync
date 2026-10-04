@@ -25,11 +25,6 @@ const emptyValues: CreateTripValues = {
   destination: '',
 };
 
-const nameIdeas = [
-  { label: '🌲 Yosemite Trek', value: '🌲 Yosemite Weekend Escape' },
-  { label: '🍷 Napa Getaway', value: '🍷 Napa Wine Tour Getaway' },
-];
-
 const validate = ({ tripName, arriveBy, destination }: CreateTripValues) => {
   const errors: Errors = {};
 
@@ -127,11 +122,6 @@ const CreateTripForm = ({ onBack, onSubmit }: CreateTripFormProps) => {
               fullWidth
             />
           </FormField>
-          <PresetChips
-            title="Quick Ideas:"
-            options={nameIdeas}
-            onSelect={(v) => setField('tripName', v)}
-          />
         </Stack>
 
         <Stack spacing={2}>
