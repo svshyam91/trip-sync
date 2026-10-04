@@ -39,7 +39,9 @@ const searchPlace: RequestHandler = async (req, res, next) => {
 
     return res.status(200).json(response);
   } catch (error) {
-    return next(error);
+    next(error);
+
+    return;
   }
 };
 
