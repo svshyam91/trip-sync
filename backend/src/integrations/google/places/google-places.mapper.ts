@@ -1,6 +1,6 @@
 import type { protos } from '@googlemaps/places';
 
-import type { PlaceSearchResponse } from '#types/place.js';
+import type { PlaceSearchResponse } from '#types/place.types.js';
 
 type IAutocompletePlacesResponse =
   protos.google.maps.places.v1.IAutocompletePlacesResponse;

@@ -1,9 +1,10 @@
-import { Map, Polyline } from "@vis.gl/react-google-maps";
-import Grid from "@mui/material/Grid";
-import { useMemo, useState } from "react";
-import PeopleMarker, { type PersonMarker } from "./PersonMarker";
+import Grid from '@mui/material/Grid';
+import { Map } from '@vis.gl/react-google-maps';
+import { useMemo, useState } from 'react';
 
-export type { PersonMarker } from "./PersonMarker";
+import PeopleMarker, { type PersonMarker } from './PersonMarker';
+
+export type { PersonMarker } from './PersonMarker';
 
 export type LatLngLike = {
   lat: number;
@@ -19,14 +20,14 @@ type LocationMapProps = {
 
 const DEFAULT_CENTER: LatLngLike = {
   lat: 28.4134726,
-  lng: 77.0339509
+  lng: 77.0339509,
 };
 
 export default function LocationMap({
   people = [],
   center,
   zoom = 12,
-  height = 360
+  height = 360,
 }: LocationMapProps) {
   const [activePersonId, setActivePersonId] = useState<string | null>(null);
   const [hoveredPersonId, setHoveredPersonId] = useState<string | null>(null);
@@ -44,27 +45,28 @@ export default function LocationMap({
       (acc, person) => {
         acc.lat += person.position.lat;
         acc.lng += person.position.lng;
+
         return acc;
       },
-      { lat: 0, lng: 0 }
+      { lat: 0, lng: 0 },
     );
 
     return {
       lat: total.lat / people.length,
-      lng: total.lng / people.length
+      lng: total.lng / people.length,
     };
   }, [center, people]);
 
   return (
     <Grid
       sx={{
-        width: "100%",
+        width: '100%',
         height,
         borderRadius: 2,
-        overflow: "hidden",
-        border: "1px solid",
-        borderColor: "divider",
-        boxShadow: "0 12px 28px rgba(15, 23, 42, 0.08)"
+        overflow: 'hidden',
+        border: '1px solid',
+        borderColor: 'divider',
+        boxShadow: '0 12px 28px rgba(15, 23, 42, 0.08)',
       }}
     >
       <Map
@@ -74,7 +76,7 @@ export default function LocationMap({
         defaultZoom={zoom}
         gestureHandling="greedy"
         disableDefaultUI={false}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
       >
         {people.map((person) => {
           const isActive = activePersonId === person.id;
@@ -88,7 +90,7 @@ export default function LocationMap({
               isHovered={isHovered}
               onClick={() =>
                 setActivePersonId((currentId) =>
-                  currentId === person.id ? null : person.id
+                  currentId === person.id ? null : person.id,
                 )
               }
               onInfoWindowClose={() => setActivePersonId(null)}

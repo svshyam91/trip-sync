@@ -1,25 +1,26 @@
-import { Grid, Paper, SvgIcon } from "@mui/material";
-import LocationMap, { type PersonMarker } from "../Map/LocationMap";
+import { Grid, Paper, SvgIcon } from '@mui/material';
+
+import LocationMap, { type PersonMarker } from '../Map/LocationMap';
 
 const samplePeople: PersonMarker[] = [
   {
-    id: "you",
-    name: "You",
+    id: 'you',
+    name: 'You',
     position: { lat: 37.7749, lng: -122.4194 },
-    color: "#1976d2"
+    color: '#1976d2',
   },
   {
-    id: "alex",
-    name: "Alex",
+    id: 'alex',
+    name: 'Alex',
     position: { lat: 37.785, lng: -122.41 },
-    color: "#2e7d32"
+    color: '#2e7d32',
   },
   {
-    id: "sam",
-    name: "Sam",
+    id: 'sam',
+    name: 'Sam',
     position: { lat: 37.768, lng: -122.431 },
-    color: "#ed6c02"
-  }
+    color: '#ed6c02',
+  },
 ];
 
 export function LocationPinIcon() {
@@ -30,56 +31,56 @@ export function LocationPinIcon() {
   );
 }
 
-const geoLocationOptions: PositionOptions = {
-  enableHighAccuracy: true,
-  timeout: 10000,
-  maximumAge: 0
-};
+// const geoLocationOptions: PositionOptions = {
+//   enableHighAccuracy: true,
+//   timeout: 10000,
+//   maximumAge: 0
+// };
 
 export default function LocationShare() {
-  const getCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser.");
-      return;
-    }
+  // const getCurrentLocation = () => {
+  //   if (!navigator.geolocation) {
+  //     alert("Geolocation is not supported by your browser.");
+  //     return;
+  //   }
 
-    const handleSuccess = (position: GeolocationPosition) => {
-      console.log("Latitude:", position.coords.latitude);
-      console.log("Longitude:", position.coords.longitude);
-    };
+  //   const handleSuccess = (position: GeolocationPosition) => {
+  //     console.log("Latitude:", position.coords.latitude);
+  //     console.log("Longitude:", position.coords.longitude);
+  //   };
 
-    const handleError = (error: GeolocationPositionError) => {
-      console.error("Error getting location:", error);
-    };
+  //   const handleError = (error: GeolocationPositionError) => {
+  //     console.error("Error getting location:", error);
+  //   };
 
-    navigator.geolocation.getCurrentPosition(
-      handleSuccess,
-      handleError,
-      geoLocationOptions
-    );
-  };
+  //   navigator.geolocation.getCurrentPosition(
+  //     handleSuccess,
+  //     handleError,
+  //     geoLocationOptions
+  //   );
+  // };
 
   return (
     <Paper
       elevation={0}
       sx={{
-        width: "100%",
-        maxWidth: { xs: "34rem", md: "36rem" },
-        boxSizing: "border-box",
+        width: '100%',
+        maxWidth: { xs: '34rem', md: '36rem' },
+        boxSizing: 'border-box',
         p: { xs: 3, sm: 4, md: 5 },
-        border: "1px solid",
-        borderColor: "divider",
-        textAlign: "center"
+        border: '1px solid',
+        borderColor: 'divider',
+        textAlign: 'center',
       }}
     >
       <Grid
         sx={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr)",
-          justifyItems: "center"
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1fr)',
+          justifyItems: 'center',
         }}
       >
-        <Grid sx={{ width: "100%" }}>
+        <Grid sx={{ width: '100%' }}>
           <LocationMap people={samplePeople} height={500} />
         </Grid>
       </Grid>

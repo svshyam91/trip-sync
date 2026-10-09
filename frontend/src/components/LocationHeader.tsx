@@ -1,43 +1,42 @@
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { LocationPinIcon } from "./LocationShare/LocationShare";
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
-type LocationHeaderProps = {};
+import { LocationPinIcon } from './LocationShare/LocationShare';
 
-export default function LocationHeader({}: LocationHeaderProps) {
+export default function LocationHeader() {
   return (
     <Grid
       container
       spacing={2}
       sx={{
-        width: "100%",
+        width: '100%',
         mb: 3,
         px: 2,
         py: 1.5,
         borderRadius: 1,
-        border: "1px solid",
-        borderColor: "divider",
-        bgcolor: "grey.50",
-        alignItems: "center",
-        justifyContent: "space-between"
+        border: '1px solid',
+        borderColor: 'divider',
+        bgcolor: 'grey.50',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
       <Grid
         container
         spacing={1}
-        sx={{ minWidth: 0, flexWrap: "nowrap", alignItems: "center" }}
+        sx={{ minWidth: 0, flexWrap: 'nowrap', alignItems: 'center' }}
       >
         <Grid
           sx={{
             width: { xs: 28, sm: 32 },
             height: { xs: 28, sm: 32 },
-            display: "grid",
-            placeItems: "center",
-            borderRadius: "50%",
-            bgcolor: "primary.light",
-            color: "primary.dark",
-            flexShrink: 0
+            display: 'grid',
+            placeItems: 'center',
+            borderRadius: '50%',
+            bgcolor: 'primary.light',
+            color: 'primary.dark',
+            flexShrink: 0,
           }}
         >
           <LocationPinIcon />
@@ -47,7 +46,7 @@ export default function LocationHeader({}: LocationHeaderProps) {
           <Typography
             variant="body2"
             component="p"
-            sx={{ fontWeight: 700, lineHeight: 1.4, wordBreak: "break-word" }}
+            sx={{ fontWeight: 700, lineHeight: 1.4, wordBreak: 'break-word' }}
           >
             Gurgaon, Haryana, India
           </Typography>
@@ -57,8 +56,8 @@ export default function LocationHeader({}: LocationHeaderProps) {
       <Grid
         container
         sx={{
-          alignItems: "center",
-          justifyContent: { xs: "flex-start", sm: "flex-end" }
+          alignItems: 'center',
+          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
         }}
       >
         <Grid container>

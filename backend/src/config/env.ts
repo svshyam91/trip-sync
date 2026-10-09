@@ -22,6 +22,7 @@ function port(name: string, fallback: number): number {
   if (!Number.isInteger(parsed) || parsed < 1 || parsed > 65_535) {
     throw new Error(`${name} must be a valid port number`);
   }
+
   return parsed;
 }
 

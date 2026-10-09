@@ -1,17 +1,32 @@
-import { CssBaseline, Grid, ThemeProvider } from "@mui/material";
-import LocationHeader from "./components/LocationHeader";
-import LocationShare from "./components/LocationShare/LocationShare";
-import theme from "./theme";
-import { APIProvider } from "@vis.gl/react-google-maps";
+import { APIProvider } from '@vis.gl/react-google-maps';
+import { useState } from 'react';
+
+import Header from './components/layout/header/Header';
+import CreateTripPage from './pages/CreateTripPage';
+import HomePage from './pages/HomePage';
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 function App() {
+  const [page, setPage] = useState<'home' | 'create'>('home');
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <APIProvider apiKey={apiKey}>
-        <Grid
+    <APIProvider apiKey={apiKey}>
+      <div className="flex h-dvh flex-col">
+        <Header
+          onHome={() => setPage('home')}
+          onCreateTrip={() => setPage('create')}
+        />
+        {page === 'home' ? (
+          <HomePage onPlanTrip={() => setPage('create')} />
+        ) : (
+          <CreateTripPage
+            onBack={() => setPage('home')}
+            onSubmit={() => setPage('home')}
+          />
+        )}
+      </div>
+      {/* <Grid
           container
           component="main"
           columns={{ xs: 4, sm: 8, md: 12 }}
@@ -29,9 +44,8 @@ function App() {
           <Grid size={{ xs: 4, sm: 6, md: 6 }}>
             <LocationShare />
           </Grid>
-        </Grid>
-      </APIProvider>
-    </ThemeProvider>
+        </Grid> */}
+    </APIProvider>
   );
 }
 

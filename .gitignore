@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 # Neon Project Files
 .neon
 
+.DS_Store
+# Playwright MCP output
+.playwright-mcp/

@@ -1,13 +1,13 @@
 const clamp = (value: number) => Math.min(255, Math.max(0, value));
 
 const hexToRgb = (hex: string) => {
-  const clean = hex.replace("#", "");
+  const clean = hex.replace('#', '');
   const full =
     clean.length === 3
       ? clean
-          .split("")
+          .split('')
           .map((char) => char + char)
-          .join("")
+          .join('')
       : clean;
 
   const value = Number.parseInt(full, 16);
@@ -15,7 +15,7 @@ const hexToRgb = (hex: string) => {
   return {
     r: (value >> 16) & 255,
     g: (value >> 8) & 255,
-    b: value & 255
+    b: value & 255,
   };
 };
 
@@ -25,10 +25,10 @@ export const mixColor = (hex: string, amount: number) => {
   const next = {
     r: clamp(r + amount),
     g: clamp(g + amount),
-    b: clamp(b + amount)
+    b: clamp(b + amount),
   };
 
-  const toHex = (value: number) => value.toString(16).padStart(2, "0");
+  const toHex = (value: number) => value.toString(16).padStart(2, '0');
 
   return `#${toHex(next.r)}${toHex(next.g)}${toHex(next.b)}`;
 };
