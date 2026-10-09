@@ -148,3 +148,7 @@ vite.config.ts.timestamp-*
 .DS_Store
 # Playwright MCP output
 .playwright-mcp/
+
+# Local Cursor files. Shared project MCP is `.cursor/mcp.json` (and root `.mcp.json`).
+.cursor/*
+!.cursor/mcp.json
