@@ -5,7 +5,7 @@ import * as tripService from './trip.service.js';
 const createTrip: RequestHandler = async (req, res, next) => {
   try {
     const body: unknown = req.body;
-    const { name, destinationLocationId, arriveBy } = (body ?? {}) as Record<
+    const { name, destinationPlaceId, arriveBy } = (body ?? {}) as Record<
       string,
       unknown
     >;
@@ -13,12 +13,12 @@ const createTrip: RequestHandler = async (req, res, next) => {
     // TODO: Refactor using zod
     if (
       typeof name !== 'string' ||
-      typeof destinationLocationId !== 'string' ||
+      typeof destinationPlaceId !== 'string' ||
       (typeof arriveBy !== 'string' && typeof arriveBy !== 'number')
     ) {
       res.status(400).json({
         error:
-          "Missing or invalid body. 'name' and 'destinationLocationId' must be strings, 'arriveBy' must be a date.",
+          "Missing or invalid body. 'name' and 'destinationPlaceId' must be strings, 'arriveBy' must be a date.",
       });
 
       return;
@@ -34,12 +34,23 @@ const createTrip: RequestHandler = async (req, res, next) => {
 
     const response = await tripService.createTrip(
       name,
-      destinationLocationId,
+      destinationPlaceId,
       arriveByDate,
     );
 
     res.status(201).json(response);
   } catch (error) {
+    const statusCode =
+      error instanceof Error &&
+      typeof (error as Error & { statusCode?: number }).statusCode === 'number'
+        ? (error as Error & { statusCode: number }).statusCode
+        : undefined;
+
+    if (statusCode === 400) {
+      res.status(400).json({ error: (error as Error).message });
+      return;
+    }
+
     next(error);
   }
 };

@@ -1,9 +1,11 @@
 import type { protos } from '@googlemaps/places';
 
-import type { PlaceSearchResponse } from '#types/place.types.js';
+import type { PlaceDetails, PlaceSearchResponse } from '#types/place.types.js';
 
 type IAutocompletePlacesResponse =
   protos.google.maps.places.v1.IAutocompletePlacesResponse;
+
+type IPlace = protos.google.maps.places.v1.IPlace;
 
 function isDefined<T>(value: T | null | undefined): value is T {
   return value !== null;
@@ -42,4 +44,29 @@ export function mapAutocompleteResponse(
   }
 
   return { places };
+}
+
+export function mapPlaceDetails(place: IPlace): PlaceDetails | null {
+  const id = place.id;
+  const name = place.displayName?.text;
+  const address = place.formattedAddress;
+  const location = place.location;
+
+  if (
+    typeof id !== 'string' ||
+    typeof name !== 'string' ||
+    typeof address !== 'string' ||
+    !isDefined(location)
+  ) {
+    return null;
+  }
+
+  const lat = location.latitude;
+  const lng = location.longitude;
+
+  if (typeof lat !== 'number' || typeof lng !== 'number') {
+    return null;
+  }
+
+  return { id, name, address, lat, lng };
 }
