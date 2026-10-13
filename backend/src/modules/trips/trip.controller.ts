@@ -1,4 +1,4 @@
-import type { RequestHandler } from 'express';
+import type { NextFunction, RequestHandler, Response } from 'express';
 
 import * as tripService from './trip.service.js';
 
@@ -40,19 +40,50 @@ const createTrip: RequestHandler = async (req, res, next) => {
 
     res.status(201).json(response);
   } catch (error) {
-    const statusCode =
-      error instanceof Error &&
-      typeof (error as Error & { statusCode?: number }).statusCode === 'number'
-        ? (error as Error & { statusCode: number }).statusCode
-        : undefined;
-
-    if (statusCode === 400) {
-      res.status(400).json({ error: (error as Error).message });
-      return;
-    }
-
-    next(error);
+    handleTripHttpError(error, res, next);
   }
 };
 
-export { createTrip };
+const getTrip: RequestHandler = async (req, res, next) => {
+  try {
+    const { tripId } = req.params;
+
+    if (typeof tripId !== 'string' || tripId.trim() === '') {
+      res.status(400).json({
+        error: "Missing or invalid 'tripId'.",
+      });
+
+      return;
+    }
+
+    const response = await tripService.getTrip(tripId.trim());
+
+    res.status(200).json(response);
+  } catch (error) {
+    handleTripHttpError(error, res, next);
+  }
+};
+
+type HttpError = Error & { statusCode?: number };
+
+const handleTripHttpError = (
+  error: unknown,
+  res: Response,
+  next: NextFunction,
+) => {
+  const statusCode =
+    error instanceof Error &&
+    typeof (error as HttpError).statusCode === 'number'
+      ? (error as HttpError).statusCode
+      : undefined;
+
+  if (statusCode === 400 || statusCode === 404) {
+    res.status(statusCode).json({ error: (error as Error).message });
+
+    return;
+  }
+
+  next(error);
+};
+
+export { createTrip, getTrip };

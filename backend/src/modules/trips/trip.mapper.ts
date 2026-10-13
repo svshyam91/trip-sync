@@ -1,6 +1,6 @@
 import type { LocationRow, Trip } from '../../models/trip.model.js';
 
-export function mapCreatedTrip(trip: Trip, location: LocationRow) {
+export function mapTrip(trip: Trip, location: LocationRow) {
   return {
     tripId: trip.trip_id,
     name: trip.name,

@@ -65,4 +65,60 @@ const createLocationAndTrip = async ({
   });
 };
 
-export { createLocationAndTrip };
+type TripWithDestinationRow = Trip & {
+  location_id: string;
+  location_name: string;
+  location_address: string | null;
+  location_latitude: string;
+  location_longitude: string;
+};
+
+const findTripWithDestination = async (tripId: string) => {
+  const db = getDb();
+
+  const result = await db.query<TripWithDestinationRow>(
+    `SELECT
+       t.id, t.trip_id, t.name, t.arrive_by, t.status, t.created_at,
+       t.started_at, t.ended_at, t.destination_location_id, t.created_by,
+       l.id AS location_id,
+       l.name AS location_name,
+       l.address AS location_address,
+       l.latitude AS location_latitude,
+       l.longitude AS location_longitude
+     FROM trips t
+     INNER JOIN locations l ON l.id = t.destination_location_id
+     WHERE t.trip_id = $1`,
+    [tripId],
+  );
+
+  const row = result.rows[0];
+
+  if (!row) {
+    return null;
+  }
+
+  const trip: Trip = {
+    id: row.id,
+    trip_id: row.trip_id,
+    name: row.name,
+    arrive_by: row.arrive_by,
+    status: row.status,
+    created_at: row.created_at,
+    started_at: row.started_at,
+    ended_at: row.ended_at,
+    destination_location_id: row.destination_location_id,
+    created_by: row.created_by,
+  };
+
+  const location: LocationRow = {
+    id: row.location_id,
+    name: row.location_name,
+    address: row.location_address,
+    latitude: row.location_latitude,
+    longitude: row.location_longitude,
+  };
+
+  return { trip, location };
+};
+
+export { createLocationAndTrip, findTripWithDestination };

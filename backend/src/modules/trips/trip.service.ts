@@ -6,14 +6,16 @@ import {
 } from '../../constants/trip.constants.js';
 import { generateRandomString } from '../../shared/utils/generate-random-string.js';
 
-import { mapCreatedTrip } from './trip.mapper.js';
+import { mapTrip } from './trip.mapper.js';
 import * as tripRepository from './trip.repository.js';
 
 type HttpError = Error & { statusCode?: number };
 
 const createHttpError = (message: string, statusCode: number): HttpError => {
   const error: HttpError = new Error(message);
+
   error.statusCode = statusCode;
+
   return error;
 };
 
@@ -51,7 +53,17 @@ const createTrip = async (
     },
   });
 
-  return mapCreatedTrip(persisted.trip, persisted.location);
+  return mapTrip(persisted.trip, persisted.location);
 };
 
-export { createTrip };
+const getTrip = async (tripId: string) => {
+  const persisted = await tripRepository.findTripWithDestination(tripId);
+
+  if (!persisted) {
+    throw createHttpError('Trip not found.', 404);
+  }
+
+  return mapTrip(persisted.trip, persisted.location);
+};
+
+export { createTrip, getTrip };
