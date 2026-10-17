@@ -6,9 +6,6 @@ import type { PlaceSearchResponse } from '#types/place.types.js';
 
 import { mapAutocompleteResponse } from './google-places.mapper.js';
 
-
-
-
 class GooglePlacesClient {
   private readonly placesClient: PlacesClient;
 

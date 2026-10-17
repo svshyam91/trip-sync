@@ -4,13 +4,13 @@ Read this when changing colors, typography, theme overrides, or `index.css`, or 
 
 ## Files
 
-| File | Purpose |
-|---|---|
-| `src/theme/tokens.ts` | Raw design values: color scales (`slate`, `brand`, `emerald`, `rose`, `amber`), `fontSize`, `fontWeight`, `fontFamily`, `breakpoints`. **Only place raw hex values live.** |
-| `src/theme/theme.ts` | `createTheme`: color schemes (light/dark), typography, spacing, shape, breakpoints, component overrides and variants. |
-| `src/theme/augmentation.ts` | TypeScript module augmentation for custom palette keys (`brand`, `background.muted`) and custom variants (`Button` `subtle`). |
-| `src/index.css` | Tailwind entry. Declares layer order, the dark variant, and the **bridge** from MUI CSS variables to Tailwind color names. |
-| `src/main.tsx` | Providers: `StyledEngineProvider enableCssLayer` → `ThemeProvider`. |
+| File                        | Purpose                                                                                                                                                                    |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/theme/tokens.ts`       | Raw design values: color scales (`slate`, `brand`, `emerald`, `rose`, `amber`), `fontSize`, `fontWeight`, `fontFamily`, `breakpoints`. **Only place raw hex values live.** |
+| `src/theme/theme.ts`        | `createTheme`: color schemes (light/dark), typography, spacing, shape, breakpoints, component overrides and variants.                                                      |
+| `src/theme/augmentation.ts` | TypeScript module augmentation for custom palette keys (`brand`, `background.muted`) and custom variants (`Button` `subtle`).                                              |
+| `src/index.css`             | Tailwind entry. Declares layer order, the dark variant, and the **bridge** from MUI CSS variables to Tailwind color names.                                                 |
+| `src/main.tsx`              | Providers: `StyledEngineProvider enableCssLayer` → `ThemeProvider`.                                                                                                        |
 
 ## How MUI and Tailwind fit together
 
@@ -23,18 +23,18 @@ Read this when changing colors, typography, theme overrides, or `index.css`, or 
 
 Use these bridged names. Do not use Tailwind's default palette (`slate-500`, `indigo-600`, `bg-white`, `text-black`).
 
-| Class stem | Meaning |
-|---|---|
-| `background` | page background |
-| `card` | surface / paper |
-| `muted` | chips, inputs, subtle fills |
-| `foreground` | primary text |
-| `muted-foreground` | secondary text |
-| `border` | dividers, outlines |
-| `accent` | hover fill |
-| `primary`, `ring` | brand action color, focus ring |
-| `success`, `danger`, `warning` | status colors |
-| `brand-50` … `brand-950` | brand scale |
+| Class stem                     | Meaning                        |
+| ------------------------------ | ------------------------------ |
+| `background`                   | page background                |
+| `card`                         | surface / paper                |
+| `muted`                        | chips, inputs, subtle fills    |
+| `foreground`                   | primary text                   |
+| `muted-foreground`             | secondary text                 |
+| `border`                       | dividers, outlines             |
+| `accent`                       | hover fill                     |
+| `primary`, `ring`              | brand action color, focus ring |
+| `success`, `danger`, `warning` | status colors                  |
+| `brand-50` … `brand-950`       | brand scale                    |
 
 Examples: `bg-card text-foreground border-border`, `text-muted-foreground`, `bg-brand-50 text-brand-700`.
 

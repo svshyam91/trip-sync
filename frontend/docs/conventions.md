@@ -17,8 +17,8 @@ Read this when writing a new component, hook, or utility.
 MUI uses path imports, not the barrel:
 
 ```tsx
-import Button from '@mui/material/Button';   // yes
-import { Button } from '@mui/material';      // no (createTheme in theme.ts is the one exception)
+import Button from '@mui/material/Button'; // yes
+import { Button } from '@mui/material'; // no (createTheme in theme.ts is the one exception)
 ```
 
 - Use the `@/` alias for anything outside the current feature or folder. Use relative imports within the same feature.
