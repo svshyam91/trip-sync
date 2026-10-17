@@ -23,13 +23,13 @@ Update the docs in the same change whenever your work makes them wrong: a rename
 ## Writing rules
 
 - **One fact, one place.** Don't repeat a rule between `AGENTS.md` and a doc, or between docs. Link instead.
-- **Point, don't copy.** Reference config files (`eslint.config.js`, `tsconfig.json`, `package.json`) rather than restating their contents.
+- **Point, don't copy.** Don't restate what code or config already shows (`eslint.config.js`, `tsconfig.json`, `package.json`, or the source itself). Document what the code can't say: why, conventions, and what to avoid.
 - **Principles over instances.** Write "never expose secrets", not a list of the one field that caused a past mistake.
 - **Keep `AGENTS.md` short.** When it grows, move detail into a doc and leave a one-line pointer. Only add a line if the agent would get it wrong without it.
 - **Every doc starts with a "Read this when…" line** and has a row in the `AGENTS.md` table. Add the row in the same change that creates the doc.
-- **Don't record unsettled decisions as standard.** Say plainly that something isn't standardized yet (error handling today) and tell the agent to follow the surrounding code.
+- **Don't record unsettled decisions as standard.** Say plainly that something isn't standardized yet and tell the agent to follow the surrounding code.
 - **Don't present legacy code as the model.** Mark it legacy and say where new code goes.
-- **Remove temporary notes** (like the `dist/` import gotcha) once the cause is fixed.
+- **Remove temporary notes** once the cause is fixed.
 - Imperative, specific, checkable wording. No filler.
 
 ## After editing

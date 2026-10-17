@@ -10,8 +10,9 @@ src/
 ├── server.ts            # listen only
 ├── config/              # env.ts, db.ts
 ├── constants/           # constants shared by 2+ modules
+├── errors/              # AppError + subclasses, error codes, error types
 ├── integrations/        # third-party API clients + mappers (google/places)
-├── middlewares/          # shared Express middlewares
+├── middlewares/         # shared Express middlewares (errorHandler)
 ├── shared/utils/        # pure helpers used by 2+ modules
 ├── types/               # types shared by 2+ modules
 └── modules/<resource>/
@@ -68,4 +69,4 @@ When a second module needs a type or constant, move it to `src/types/` or `src/c
 
 ## `app.ts` order matters
 
-`cookieParser()` and `express.json()` before any routes.
+`cookieParser()` and `express.json()` before any routes. After all routes: the 404 handler (passes a `NotFoundError` to `next`), then `errorHandler` last.
