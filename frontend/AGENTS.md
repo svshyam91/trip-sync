@@ -20,10 +20,10 @@ Commands (from `frontend/`): `npm run dev` · `npm run lint` · `npm run build`
 
 Cursor reads **`.cursor/mcp.json`**. Root **`.mcp.json`** is the portable copy (same servers) for other MCP clients. Other files under `.cursor/` stay local (gitignored). Enable the servers in Cursor Settings → MCP. Do not put secrets in either file.
 
-| Server      | Use for                                     | Notes                                                                  |
-| ----------- | ------------------------------------------- | ---------------------------------------------------------------------- |
-| `mui-mcp`   | `fetchDocs` for MUI v9 API/docs when unsure | Don't use `generateReactCode`; it ignores our theme and Tailwind rules |
-| `playwright` | Agent UI debugging in a browser            | Optional; not required to run `npm run dev`                            |
+| Server       | Use for                                     | Notes                                                                  |
+| ------------ | ------------------------------------------- | ---------------------------------------------------------------------- |
+| `mui-mcp`    | `fetchDocs` for MUI v9 API/docs when unsure | Don't use `generateReactCode`; it ignores our theme and Tailwind rules |
+| `playwright` | Agent UI debugging in a browser             | Optional; not required to run `npm run dev`                            |
 
 ## Read the matching doc before starting
 
