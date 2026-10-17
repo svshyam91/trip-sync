@@ -28,6 +28,6 @@ Implementation: `src/modules/auth/`.
 
 - Presence of a cookie is not authentication. Always verify the token, validate the payload with zod, then check the user still exists.
 - A failed verification (expired, tampered, malformed) means "no valid session".
-- **Planned, not built yet:** a `requireAuth` middleware in `src/middleware/` that reuses the service's token verification and attaches the user id to the request. Don't re-implement verification in controllers.
+- **Planned, not built yet:** a `requireAuth` middleware in `src/middlewares/` that reuses the service's token verification and attaches the user id to the request. Don't re-implement verification in controllers.
 - **Planned:** password hashing with a per-password salt and timing-safe comparison, never `===`. Never log or return hashes.
 - A frontend on another origin needs CORS with `credentials: true` and an explicit origin (never `*`), and `credentials: 'include'` on `fetch`.

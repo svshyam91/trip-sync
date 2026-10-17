@@ -79,6 +79,10 @@
     "#errors/*.js": {
       "source": "./src/errors/*.ts",
       "default": "./dist/errors/*.js"
+    },
+    "#middlewares/*.js": {
+      "source": "./src/middlewares/*.ts",
+      "default": "./dist/middlewares/*.js"
     }
   }
 }

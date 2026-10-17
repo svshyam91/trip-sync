@@ -11,7 +11,7 @@ src/
 ├── config/              # env.ts, db.ts
 ├── constants/           # constants shared by 2+ modules
 ├── integrations/        # third-party API clients + mappers (google/places)
-├── middleware/          # shared Express middleware
+├── middlewares/          # shared Express middlewares
 ├── shared/utils/        # pure helpers used by 2+ modules
 ├── types/               # types shared by 2+ modules
 └── modules/<resource>/
