@@ -27,7 +27,9 @@ const withTransaction = async <T>(fn: () => Promise<T>): Promise<T> => {
   try {
     await client.query('BEGIN');
     const result = await transactionStorage.run(client, fn);
+
     await client.query('COMMIT');
+
     return result;
   } catch (error) {
     try {
@@ -35,6 +37,7 @@ const withTransaction = async <T>(fn: () => Promise<T>): Promise<T> => {
     } catch {
       // Keep the original error; rollback failure is secondary.
     }
+
     throw error;
   } finally {
     client.release();

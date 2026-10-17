@@ -13,7 +13,9 @@ type HttpError = Error & { statusCode?: number };
 
 const createHttpError = (message: string, statusCode: number): HttpError => {
   const error: HttpError = new Error(message);
+
   error.statusCode = statusCode;
+
   return error;
 };
 
@@ -26,8 +28,7 @@ const createTrip = async (
     throw createHttpError("'arriveBy' must be in the future.", 400);
   }
 
-  const details =
-    await googlePlacesClient.getPlaceDetails(destinationPlaceId);
+  const details = await googlePlacesClient.getPlaceDetails(destinationPlaceId);
 
   if (!details) {
     throw createHttpError(

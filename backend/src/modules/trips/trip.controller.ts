@@ -48,6 +48,7 @@ const createTrip: RequestHandler = async (req, res, next) => {
 
     if (statusCode === 400) {
       res.status(400).json({ error: (error as Error).message });
+
       return;
     }
 
