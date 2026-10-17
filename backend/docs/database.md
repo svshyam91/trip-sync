@@ -22,17 +22,17 @@ Read this when writing SQL, a repository, a migration, or a row type.
 
 Hand-written, in `<entity>.types.ts`, mirroring the table **exactly**:
 
-| Postgres | TS (via `pg`) |
-| --- | --- |
-| `uuid` | `string` |
-| `varchar/text` | `string` |
-| `boolean` | `boolean` |
-| `integer` | `number` |
-| `bigint`, `count(*)` | `string` (pg returns int8 as a string) |
-| `numeric` | `string` (pg returns numerics as strings) |
-| `timestamptz` | `Date` |
-| `jsonb` | parsed value; treat as `unknown` and validate with zod |
-| nullable column | `T \| null` (pg returns `null`, never `undefined`) |
+| Postgres             | TS (via `pg`)                                          |
+| -------------------- | ------------------------------------------------------ |
+| `uuid`               | `string`                                               |
+| `varchar/text`       | `string`                                               |
+| `boolean`            | `boolean`                                              |
+| `integer`            | `number`                                               |
+| `bigint`, `count(*)` | `string` (pg returns int8 as a string)                 |
+| `numeric`            | `string` (pg returns numerics as strings)              |
+| `timestamptz`        | `Date`                                                 |
+| `jsonb`              | parsed value; treat as `unknown` and validate with zod |
+| nullable column      | `T \| null` (pg returns `null`, never `undefined`)     |
 
 Include generated columns (`id`, `created_at`). For inserts, take a small argument object/params instead of the full row type.
 

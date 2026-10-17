@@ -22,12 +22,12 @@ Commands (from `backend/`): `npm run dev` · `npm run typecheck` · `npm run lin
 
 ## Read the matching doc before starting
 
-| When you are…                                                       | Read                                         |
-| ------------------------------------------------------------------- | -------------------------------------------- |
-| Creating a module/file, deciding what goes where, or defining types | [docs/architecture.md](docs/architecture.md) |
-| Writing controller/service code, naming, zod usage                  | [docs/conventions.md](docs/conventions.md)   |
-| Writing SQL, a repository, a migration, or a row type               | [docs/database.md](docs/database.md)         |
-| Touching login, guests, JWT, cookies, or the current user           | [docs/auth.md](docs/auth.md)                 |
+| When you are…                                                       | Read                                                 |
+| ------------------------------------------------------------------- | ---------------------------------------------------- |
+| Creating a module/file, deciding what goes where, or defining types | [docs/architecture.md](docs/architecture.md)         |
+| Writing controller/service code, naming, zod usage                  | [docs/conventions.md](docs/conventions.md)           |
+| Writing SQL, a repository, a migration, or a row type               | [docs/database.md](docs/database.md)                 |
+| Touching login, guests, JWT, cookies, or the current user           | [docs/auth.md](docs/auth.md)                         |
 | Editing `AGENTS.md` or anything in `docs/`                          | [docs/maintaining-docs.md](docs/maintaining-docs.md) |
 
 Reference implementation for structure: `src/modules/auth/`. `src/modules/trips/` and `src/modules/places/` predate these rules (manual validation, relative imports, `models/` folder); don't copy their patterns.

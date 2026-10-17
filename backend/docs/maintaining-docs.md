@@ -13,12 +13,12 @@ Update the docs in the same change whenever your work makes them wrong: a rename
 
 ## Where content belongs
 
-| Content | Place |
-| --- | --- |
-| A rule the agent would break without being told, relevant to almost every task | `AGENTS.md` |
-| Knowledge needed only for some tasks | A doc in `docs/`, listed in the `AGENTS.md` table |
-| Something ESLint, `tsc` or the build already enforces | Nowhere. Point to the config file instead |
-| A multi-step procedure repeated often | Consider a skill; not before it has been done by hand several times |
+| Content                                                                        | Place                                                               |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| A rule the agent would break without being told, relevant to almost every task | `AGENTS.md`                                                         |
+| Knowledge needed only for some tasks                                           | A doc in `docs/`, listed in the `AGENTS.md` table                   |
+| Something ESLint, `tsc` or the build already enforces                          | Nowhere. Point to the config file instead                           |
+| A multi-step procedure repeated often                                          | Consider a skill; not before it has been done by hand several times |
 
 ## Writing rules
 

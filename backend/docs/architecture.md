@@ -34,23 +34,23 @@ Legacy, don't add to these: `src/models/` (row types now live in `<entity>.types
 
 Ask: "what would change if Express or Postgres were swapped out?" That code belongs in the layer that owns it.
 
-| Layer | Owns | Never contains |
-| --- | --- | --- |
-| routes | method + path → controller, middleware | logic |
-| controller | `req` parsing (zod), calling one service fn, status code, cookies, JSON | business decisions, SQL |
-| service | rules ("reuse a valid session, else create one"), orchestration, token sign/verify, row → public mapping | `req`, `res`, SQL |
-| repository | SQL, typed rows | rules, HTTP, tokens |
+| Layer      | Owns                                                                                                     | Never contains          |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ----------------------- |
+| routes     | method + path → controller, middleware                                                                   | logic                   |
+| controller | `req` parsing (zod), calling one service fn, status code, cookies, JSON                                  | business decisions, SQL |
+| service    | rules ("reuse a valid session, else create one"), orchestration, token sign/verify, row → public mapping | `req`, `res`, SQL       |
+| repository | SQL, typed rows                                                                                          | rules, HTTP, tokens     |
 
 A controller does four things: **parse input → call service → set status/cookies → send JSON**. An `if` about the _domain_ in a controller belongs in the service.
 
 ## Types: where each lives
 
-| Type | What | Where |
-| --- | --- | --- |
-| Row (`User`) | one table row, every column, snake_case, nullable as `T \| null` | `<entity>.types.ts` |
-| Narrowed row | a query returning fewer columns | `Pick<Row, …>` inline, derived from the row type |
-| Public (`PublicUser`) | what the API exposes, camelCase, no secrets | `<entity>.types.ts` |
-| Input | request shape | `z.infer` of the schema in `<entity>.schema.ts` |
+| Type                  | What                                                             | Where                                            |
+| --------------------- | ---------------------------------------------------------------- | ------------------------------------------------ |
+| Row (`User`)          | one table row, every column, snake_case, nullable as `T \| null` | `<entity>.types.ts`                              |
+| Narrowed row          | a query returning fewer columns                                  | `Pick<Row, …>` inline, derived from the row type |
+| Public (`PublicUser`) | what the API exposes, camelCase, no secrets                      | `<entity>.types.ts`                              |
+| Input                 | request shape                                                    | `z.infer` of the schema in `<entity>.schema.ts`  |
 
 Mapping row → public happens **once, in the service** (`toPublicUser`). Controllers only ever see public types. Details on row types: [database.md](database.md).
 
