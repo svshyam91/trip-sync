@@ -28,8 +28,7 @@ const createTrip = async (
     throw createHttpError("'arriveBy' must be in the future.", 400);
   }
 
-  const details =
-    await googlePlacesClient.getPlaceDetails(destinationPlaceId);
+  const details = await googlePlacesClient.getPlaceDetails(destinationPlaceId);
 
   if (!details) {
     throw createHttpError(

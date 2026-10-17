@@ -44,15 +44,7 @@ const createLocationAndTrip = async ({
        )
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING *`,
-      [
-        tripId,
-        name,
-        arriveBy,
-        status,
-        createdAt,
-        location.id,
-        createdBy,
-      ],
+      [tripId, name, arriveBy, status, createdAt, location.id, createdBy],
     );
 
     const trip = tripResult.rows[0];
