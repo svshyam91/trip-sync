@@ -42,8 +42,7 @@ class GooglePlacesClient {
       {
         otherArgs: {
           headers: {
-            'X-Goog-FieldMask':
-              'id,displayName,formattedAddress,location',
+            'X-Goog-FieldMask': 'id,displayName,formattedAddress,location',
           },
         },
       },
