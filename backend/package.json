@@ -75,6 +75,10 @@
     "#types/*.js": {
       "source": "./src/types/*.ts",
       "default": "./dist/types/*.js"
+    },
+    "#errors/*.js": {
+      "source": "./src/errors/*.ts",
+      "default": "./dist/errors/*.js"
     }
   }
 }
