@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format:check": "prettier --check",
-    "format": "prettier --write",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "migrate": "node-pg-migrate --envPath .env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
