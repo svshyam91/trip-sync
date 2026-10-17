@@ -1,0 +1,9 @@
+const AUTH_COOKIE_NAME = 'authToken';
+
+const JWT_ALGORITHM = 'HS256';
+
+const AUTH_TOKEN_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days
+
+const GUEST_NAME = 'Guest';
+
+export { AUTH_COOKIE_NAME, AUTH_TOKEN_TTL_SECONDS, GUEST_NAME, JWT_ALGORITHM };
