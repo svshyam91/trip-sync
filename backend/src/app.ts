@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import express from 'express';
 
 import placeRoutes from './modules/places/place.routes.js';
@@ -5,6 +6,7 @@ import tripRoutes from './modules/trips/trip.routes.js';
 
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.use(tripRoutes);

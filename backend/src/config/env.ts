@@ -37,11 +37,15 @@ if (nodeEnv !== 'development' && nodeEnv !== 'production') {
 }
 
 if (nodeEnv === 'development' && !isLocal) {
-  throw new Error('NODE_ENV development requires a local PostgreSQL connection');
+  throw new Error(
+    'NODE_ENV development requires a local PostgreSQL connection',
+  );
 }
 
 if (nodeEnv === 'production' && isLocal) {
-  throw new Error('NODE_ENV production requires a remote PostgreSQL connection');
+  throw new Error(
+    'NODE_ENV production requires a remote PostgreSQL connection',
+  );
 }
 
 export const env = {
@@ -49,4 +53,5 @@ export const env = {
   port: port('PORT', 3000),
   databaseUrl,
   googleApiKey: required('GOOGLE_API_KEY'),
+  jwtToken: required('JWT_TOKEN'),
 } as const;
