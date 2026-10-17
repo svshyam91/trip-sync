@@ -10,4 +10,13 @@ export type Trip = {
   started_at: Date | null;
   ended_at: Date | null;
   destination_location_id: string;
+  created_by: string;
+};
+
+export type LocationRow = {
+  id: string;
+  name: string;
+  address: string | null;
+  latitude: string;
+  longitude: string;
 };

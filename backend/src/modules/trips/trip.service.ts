@@ -1,27 +1,68 @@
-import { TRIP_STATUS } from '../../constants/trip.constants.js';
+import { googlePlacesClient } from '#integrations/google/places/google-places.client.js';
+
+import {
+  LOCAL_DEV_CREATED_BY,
+  TRIP_STATUS,
+} from '../../constants/trip.constants.js';
 import { generateRandomString } from '../../shared/utils/generate-random-string.js';
 
+import { mapTrip } from './trip.mapper.js';
 import * as tripRepository from './trip.repository.js';
+
+type HttpError = Error & { statusCode?: number };
+
+const createHttpError = (message: string, statusCode: number): HttpError => {
+  const error: HttpError = new Error(message);
+
+  error.statusCode = statusCode;
+
+  return error;
+};
 
 const createTrip = async (
   name: string,
-  destinationLocationId: string,
+  destinationPlaceId: string,
   arriveBy: Date,
 ) => {
-  const tripId = generateRandomString();
-  const createdAt = new Date();
+  if (arriveBy.getTime() <= Date.now()) {
+    throw createHttpError("'arriveBy' must be in the future.", 400);
+  }
 
-  // check if destinationLocationId exist in location table
-  // check if arriveBy date is in future.
+  const details = await googlePlacesClient.getPlaceDetails(destinationPlaceId);
 
-  return tripRepository.createTrip({
-    tripId,
+  if (!details) {
+    throw createHttpError(
+      'Could not load destination coordinates for this place.',
+      400,
+    );
+  }
+
+  const persisted = await tripRepository.createLocationAndTrip({
+    tripId: generateRandomString(),
     name,
     arriveBy,
     status: TRIP_STATUS.CREATED,
-    createdAt,
-    destinationLocationId,
+    createdAt: new Date(),
+    createdBy: LOCAL_DEV_CREATED_BY,
+    destination: {
+      name: details.name,
+      address: details.address,
+      lat: details.lat,
+      lng: details.lng,
+    },
   });
+
+  return mapTrip(persisted.trip, persisted.location);
 };
 
-export { createTrip };
+const getTrip = async (tripId: string) => {
+  const persisted = await tripRepository.findTripWithDestination(tripId);
+
+  if (!persisted) {
+    throw createHttpError('Trip not found.', 404);
+  }
+
+  return mapTrip(persisted.trip, persisted.location);
+};
+
+export { createTrip, getTrip };
