@@ -11,7 +11,7 @@ Commands (from `backend/`): `npm run dev` · `npm run typecheck` · `npm run lin
 3. **Never expose secrets or raw DB rows** in responses or logs. Map rows to API types in the service.
 4. **SQL is parameterized.** Never build queries from user input.
 5. **Constants:** name any literal that is reused or whose meaning isn't obvious where it's used. Module-specific in `<module>.constants.ts`, shared in `src/constants/`. Keep one source of truth per fact and derive related values instead of repeating them. Declare object constants `as const` so literal types aren't widened.
-6. **Imports:** `#alias/…` for cross-folder, relative within a module, always with the `.js` extension.
+6. **Imports:** `#alias/…` for cross-folder, relative within a module, always with the `.js` extension. Aliases are defined in `package.json` `imports` (`source` → `src/` for dev and typecheck, `default` → `dist/` for production); a new alias needs both entries.
 7. **Env vars** go through `src/config/env.ts` and `.env.example` only; never read `process.env` elsewhere.
 8. **HTTP:** follow standard method and status-code semantics.
 9. **Error handling is not standardized yet.** Don't introduce new error classes or patterns; follow the surrounding code.
@@ -19,10 +19,6 @@ Commands (from `backend/`): `npm run dev` · `npm run typecheck` · `npm run lin
 11. **Keep guidance current.** If your change makes this file or a doc wrong, update it in the same change. Read [docs/maintaining-docs.md](docs/maintaining-docs.md) before editing any guidance `.md`.
 
 **Before finishing:** run `npm run lint:fix`, then `npm run typecheck` and `npm run lint`. `eslint.config.js` and `tsconfig.json` are the source of truth for style and strictness. Fix violations; don't work around them with `any`, `!` or lint-disable comments.
-
-## Known gotcha
-
-`package.json` `imports` maps `#config/*` etc. to `./dist/*`, so under `tsx watch` `#`-aliased imports load the **compiled `dist/` copy**, not `src/`. Edits to aliased folders aren't seen at runtime until `npm run build`. If a value is `undefined` at runtime but typechecks, check this first.
 
 ## Read the matching doc before starting
 
